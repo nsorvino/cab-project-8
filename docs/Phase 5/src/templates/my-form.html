@@ -1,0 +1,214 @@
+<!-- /templates/my-form.html-->
+
+<html>
+    <head>
+        <title>Team8 CAB Project</title>
+    </head>
+    <body>
+	    <h3>New Jersey EV Statistics</h3>
+        <center>
+            <img src="/static/Logo.jpg">
+        </center>
+        
+        <form action="/avg-gas-price" method="POST">
+            <h4>Average Gas Prices by County</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        <form action="/workers-public-transport" method="POST">
+            <h4>Public Transport Options for Workers</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+       
+        <form action="/population-in-poverty" method="POST">
+            <h4>Percentage of Population in Poverty</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+       
+        <form action="/total-housing-units" method="POST">
+            <h4>Housing Units by County</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+        
+        <form action="/ev-station-density" method="POST">
+            <h4>EV Station Densities</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+       
+        <form action="/population-density" method="POST">
+            <h4>Population Densities</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+        
+        <form action="/bike-walk-to-work" method="POST">
+            <h4>People Biking or Walking to Work</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+      
+        <form action="/median-household-income" method="POST">
+            <h4>Median Housing Income by County</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+       
+        <form action="/ev-charging-stations" method="POST">
+            <h4>Number of Charging Stations by County</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+       
+        <form action="/public-transportation-housing" method="POST">
+            <h4>Public Transportation vs Housing</h4>
+            <div>
+                <label for="county-dropdown-1">Select a county:</label>
+                <select id="county-dropdown-1" name="county">
+                    {% for countyRow in counties %}
+                    {% for countyCol in countyRow %}
+                    <option value="{{ countyCol }}">{{ countyCol }}</option>
+                    {% endfor %}
+                    {% endfor %}
+                </select>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+    </body>
+
+    <!-- minimal styling -->
+    <style>
+        form {
+            margin: 1%;
+        }
+
+        div {
+            margin: 1% 0;
+        }
+        body {
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 50%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</html>

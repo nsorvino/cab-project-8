@@ -1,0 +1,180 @@
+Gas Prices View
+Data: cName, average_gas_price
+Transaction requirements: Read access to the County table
+Example query: "List the name and average gas price of all counties where the average gas price is above $3.00 per gallon."
+
+CREATE VIEW Gas_Prices_View AS
+SELECT cName, average_gas_price
+FROM County;
+
+
+
+Transportation View
+Data: cName, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home
+Transaction requirements: Read access to the Means of Transportation table
+Example query: "List the percentage of commuters in each county who use public transportation as their primary means of commuting."
+
+CREATE VIEW Transportation_View AS
+SELECT cName, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home
+FROM Means_of_Transportation;
+
+
+Poverty View
+Data: cName, %population_in_poverty
+Transaction requirements: Read access to the Financial Status of Citizens table
+Example query: "Which counties have the highest percentage of their population living below the poverty line?"
+
+CREATE VIEW Poverty_View AS
+SELECT cName, %population_in_poverty
+FROM Financial_Status_of_Citizens;
+
+
+Housing Density View
+Data: cName, units_by_structure, total_housing_units
+Transaction requirements: Read access to the Housing Architecture table
+Example query: "What is the average number of housing units per structure type in each county?"
+
+
+
+
+CREATE VIEW Housing_Density_View AS
+SELECT cName, units_by_structure, total_housing_units
+FROM Housing_Architecture;
+
+
+EV Station Density View
+Data: cName, zipcode, charging_station_density
+Transaction requirements: Read access to the EV Station table
+Example query: "What is the EV charging station density (number of charging stations per square mile) in each county?"
+
+CREATE VIEW EV_Station_Density_View AS
+SELECT cName, zipcode, charging_station_density
+FROM EV_Station;
+
+
+
+Population Density View
+Data: cName, population_density
+Transaction requirements: Read access to the County table
+Example query: "List the name and population density of all counties where the population density is above 500 people per square mile."
+
+CREATE VIEW Population_Density_View AS
+SELECT cName, population_density
+FROM County;
+
+
+
+Commuting View
+Data: cName, total_workers, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home
+Transaction requirements: Read access to both the County and Means of Transportation tables
+Example query: "What percentage of workers in each county commute by walking or biking?"
+
+
+CREATE VIEW Commuting_View AS
+SELECT cName, total_workers, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home
+FROM County
+JOIN Means_of_Transportation ON County.cName = Means_of_Transportation.cName;
+
+
+
+Income View
+Data: cName, median_household_income, %population_in_poverty
+Transaction requirements: Read access to the Financial Status of Citizens table
+Example query: "What is the median household income and percentage of population in poverty for each county?"
+
+CREATE VIEW Income_View AS
+SELECT cName, median_household_income, %population_in_poverty
+FROM Financial_Status_of_Citizens;
+
+
+
+EV Station Availability View
+Data: zipcode, num_of_stations
+Transaction requirements: Read access to the EV Station table
+Example query: "List the zip codes where the number of EV charging stations is less than 5."
+
+CREATE VIEW EV_Station_Availability_View AS
+SELECT zipcode, num_of_stations
+FROM EV_Station;
+
+
+
+Transportation and Housing View
+Data: cName, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home, units_by_structure, total_housing_units
+Transaction requirements: Read access to both the Means of Transportation and Housing Architecture tables
+Example query: "What is the average number of housing units per structure type and the percentage of commuters using public transportation in each county?"
+
+CREATE VIEW Transportation_Housing_View AS
+SELECT County.cName, %cars/trucks/vans, %public-transport, %taxi, %motorbike, %bicycle, %walk, %other_means, %work_from_home, units_by_structure, total_housing_units
+FROM County
+JOIN Means_of_Transportation ON County.cName = Means_of_Transportation.cName
+JOIN Housing_Architecture ON County.cName = Housing_Architecture.cName;
+
+
+
+
+
+
+
+Design a complete set of SQL queries to satisfy the transaction requirements identified in the previous stages, using the relational schema and views defined in tasks 2 and 3 above.
+
+Get the average gas price for a particular county:
+
+SELECT average_gas_price
+FROM Gas_Prices_View
+WHERE cName = 'Atlantic';
+
+Get percentage of workers who use public transportation in a particular county:
+
+SELECT %public-transport
+FROM Transportation_View
+WHERE cName = 'Morris';
+
+Get the percentage of population in poverty for a particular county:
+
+SELECT %population_in_poverty
+FROM Poverty_View
+WHERE cName = 'Ocean';
+
+Get the total number of housing units for a particular county:
+
+SELECT total_housing_units
+FROM Housing_Density_View
+WHERE cName = 'Camden';
+
+
+Get the EV charging station density for a particular county and zipcode:
+
+SELECT charging_station_density
+FROM EV_Station_Density_View
+WHERE cName = 'Essex';
+
+Get the population density for a particular county:
+
+SELECT population_density
+FROM Population_Density_View
+WHERE cName = 'Bergen';
+
+Get the percentage of workers who walk or bike to work in a particular county:
+
+SELECT %bicycle, %walk
+FROM Commuting_View
+WHERE cName = 'Mercer';
+
+Get the median household income for a particular county:
+
+SELECT median_household_income
+FROM Income_View
+WHERE cName = 'Hunterdon';
+
+Get the number of EV charging stations available in a particular zipcode:
+
+SELECT num_of_stations
+FROM EV_Station_Availability_View
+WHERE cName = 'Atlantic';
+
+Get the percentage of workers who use public transportation and the total number of housing units for a particular county:
+
+SELECT %public-transport, total_housing_units
+FROM Transportation_Housing_View
+WHERE cName = 'Salem';

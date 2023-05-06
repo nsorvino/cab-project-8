@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Flask result table using nested for loops</title>
+        <!-- Add some style to table (OPTIONAL) -->
+        <style type="text/css">
+            /* Apply styles to the table header */
+            th {
+                background-color:#4CAF50;
+                color: white;
+                padding: 8px;
+                border: 1px solid black;
+            }
+
+            /* Apply styles to even rows */
+            tr:nth-of-type(even) {
+                background-color: rgba(150, 150, 150, 0.5);
+            }
+
+            /* Apply styles to all cells */
+            td {
+                padding: 8px;
+                border: 1px solid black;
+            }
+
+            /* Center the table in the middle of the page */
+            table {
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <img src="/static/Logo.jpg">
+        </center>
+        <table>
+            <!-- column header for loop in jinja template -->
+            <thead>
+                <tr>
+                {%for head in heads%}
+                    <th>{{head}}</th>
+                {%endfor%}
+                </tr>
+            </thead>
+            <!-- nested for loops in jinja template -->
+            <tbody>
+            {%for row in rows%}
+                <tr>
+                {%for col in row%}
+                    <td>{{col}}</td>
+                {%endfor%}
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </body>
+</html>
